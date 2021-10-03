@@ -14,35 +14,44 @@
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/fontawesome.min.css" integrity="sha512-fZR38yq4xO90wo6TP7f0IltoS2HxJD3HmXEEt4cGU3BXPDjGZ6nun24myAgfajbfO1TOigLZT/ylZGRhA8vtZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
-    <!-- <link ref="stylesheet" href="style.css"> -->
+    <!-- <link ref="stylesheet" href="./style.css"> -->
 	<style>
+        :root {
+            --color__cyan-primary: hsl(172, 67%, 45%);
+            --color__cyan-dark: hsl(183, 100%, 15%);
+            --color__cyan-dark-gray1: hsl(186, 14%, 43%);
+            --color__cyan-dark-gray2: hsl(184, 14%, 56%);
+            --color__cyan-light-gray1: hsl(185, 41%, 84%);
+            --color__cyan-light-gray2: hsl(189, 41%, 97%);
+            --color__white: hsl(0, 0%, 100%);
+}
 		body {
             background: #C4E3E6;
             font-family: 'Space Mono', monospace;
         }
         .container {
             display: flex;
-            width: 600px;
-            height: 400px;
+            width: 40rem;
+            height: auto;
             background: white;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 100px;
-            border-radius: 20px;
+            margin-top: 5rem;
+            border-radius: 1.5rem;
             box-shadow: 1px 1px #E2E2E2;
             padding: 10px;
         }
         .left {
             flex: 1;
         }
-        .right {
-            flex: 1;
-        }
         .right-section-container {
             background: #00494D;
             width: 100%;
             height: 100%;
-            border-radius: 20px;
+            border-radius: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .cal-input {
             background: #F3F9F9;
@@ -77,26 +86,110 @@
             font-size: 0.9em;
         }
         .tips-wrapper {
+            position: relative;
             display: flex;
+            justify-content: space-between;
+            align-content: space-between;
+            flex-wrap: wrap
         }
         .tip-item {
             flex: 1;
+            font-weight: 700;
+            font-family: "Space Mono", monospace;
+            font-size: 1.1rem;
             background: #00494D;
-            margin: 5px;
-            padding: 5px;
+            margin: .4rem;
+            padding: .4rem;
+            cursor: pointer;
             text-align: center;
-            color: white;
-            border-radius: 5px;
+            color: #F3F9F9;
+            border-radius: .4rem;
+        }
+
+        button.tip-item:hover {
+            background-color: var(--color__cyan-primary);
+            color: var(--color__cyan-dark);
+        }
+        button.tip-item--active {
+            background-color: var(--color__cyan-primary);
+            color: var(--color__cyan-dark);
         }
         .select-tip {
             margin-top: 30px;
             margin-bottom: 30px;
         }
+        .chosen-tip, .tip-total {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+        }
+        .chosen-tip {
+            display: flex;
+            align-items: space-between;
+        }
+        .tip-amount {
+            justify-content: flex-start;
+            color: white;
+        }
+        input, .tips-wrapper input {
+            width: 50%;
+            padding: 0.5rem;
+            text-align: end;
+            background-color: #F3F9F9;
+            color: #00494D;
+            border: none;
+            font-weight: 700;
+            border-radius: 0.5rem;
+        }
+        
+        .right {
+            padding: 1.5rem;
+            background-color: var(--color__cyan-dark);
+            border-radius: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .tip-amount h2 {
+            color: var(--color__cyan-light-gray2);
+            margin: 0;
+            font-size: .9rem;
+        }
+
+        .tip-amount h3 {
+            color: var(--color__cyan-dark-gray2);
+            margin: 0;
+            font-size: .8rem;
+        }
+
+        .amount {
+            color: var(--color__cyan-primary);
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .reset-button {
+            padding: .3rem 1rem;
+            background-color: hsl(183, 100%, 20%);
+            color: var(--color__cyan-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.3rem;
+            cursor: pointer;
+        }
+
+        .reset-button:hover {
+            background-color: var(--color__cyan-primary);
+            color: var(--color__cyan-dark);
+        }
+
+
 	</style>
 </head>
 <body>
     <main class="container">
-        <div class="left">
+        <section class="left">
             <label for="">BILL</label>
             <div class="amount-wrapper">
                 <input id="amount" class="cal-input" name="amount" type="text" placeholder="0" />
@@ -104,14 +197,14 @@
             <div class="select-tip">
                 <label for="">Select Tip %</label>
                 <div class="tips-wrapper">
-                    <div class="tip-item">5%</div>
-                    <div class="tip-item">10%</div>
-                    <div class="tip-item">15%</div>
+                    <button class="tip-item" id="p05">5%</button>
+                    <button class="tip-item" id="p10">10%</button>
+                    <button class="tip-item" id="p15">15%</button>
                 </div>
                 <div class="tips-wrapper">
-                    <div class="tip-item">20%</div>
-                    <div class="tip-item">30%</div>
-                    <div class="tip-item">Custom%</div>
+                    <button class="tip-item" id="p25">25%</button>
+                    <button class="tip-item" id="p50">50%</button>
+                    <input type="text" id="pCustom" placeholder="Custom" class="tip-item" id="p05" />
                 </div>
             </div>
             <label for="">Number of people</label>
@@ -119,13 +212,28 @@
                 <i class="fas fa-user"></i>
                 <input id="nop" class="cal-input" name="nop" type="text" placeholder="0" />
             </div>
-        </div>
+        </section>
         <!-- ./left-->
-        <div class="right">
+        <section class="right">
             <div class="right-section-container">
+                <div class="chosen-tip">
+                    <div class="tip-amount">    
+                        <h2>Tip Amount</h2>
+                        <h3>/ person</h3>
+                    </div>
+                    <div class="amount" id="tip-amount">$0.00</div>
+                </div>
+                <div class="tip-total">
+                    <div class="tip-amount">
+                        <h2>Total</h2>
+                        <h3>/ person</h3>
+                    </div>
+                    <div class="amount" id="total-amount">$0.00</div>
+                </div>
+                <button class="reset-button">RESET</button>
             </div>
             <!-- ./right-section-container-->
-        </div>
+        </section>
         <!-- ./right-->
     </main>
     <!-- ./container-->

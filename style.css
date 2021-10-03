@@ -1,3 +1,13 @@
+:root {
+    --color__cyan-primary: hsl(172, 67%, 45%);
+    --color__cyan-dark: hsl(183, 100%, 15%);
+    --color__cyan-dark-gray1: hsl(186, 14%, 43%);
+    --color__cyan-dark-gray2: hsl(184, 14%, 56%);
+    --color__cyan-light-gray1: hsl(185, 41%, 84%);
+    --color__cyan-light-gray2: hsl(189, 41%, 97%);
+    --color__white: hsl(0, 0%, 100%);
+}
+
 body {
     background: #C4E3E6;
     font-family: 'Space Mono', monospace;
@@ -5,13 +15,13 @@ body {
 
 .container {
     display: flex;
-    width: 600px;
-    height: 400px;
+    width: 40rem;
+    height: auto;
     background: white;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 100px;
-    border-radius: 20px;
+    margin-top: 5rem;
+    border-radius: 1.5rem;
     box-shadow: 1px 1px #E2E2E2;
     padding: 10px;
 }
@@ -20,15 +30,14 @@ body {
     flex: 1;
 }
 
-.right {
-    flex: 1;
-}
-
 .right-section-container {
     background: #00494D;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .cal-input {
@@ -69,20 +78,113 @@ i.fas.fa-user {
 }
 
 .tips-wrapper {
+    position: relative;
     display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap
 }
 
 .tip-item {
     flex: 1;
+    font-weight: 700;
+    font-family: "Space Mono", monospace;
+    font-size: 1.1rem;
     background: #00494D;
     margin: 5px;
     padding: 5px;
+    cursor: pointer;
     text-align: center;
-    color: white;
+    color: #F3F9F9;
     border-radius: 5px;
+}
+
+button.tip-item:hover {
+    background-color: var(--color__cyan-primary);
+    color: var(--color__cyan-dark);
+}
+
+button.tip-item--active {
+    background-color: var(--color__cyan-primary);
+    color: var(--color__cyan-dark);
 }
 
 .select-tip {
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.chosen-tip,
+.tip-total {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.chosen-tip {
+    display: flex;
+    align-items: space-between;
+}
+
+.tip-amount {
+    justify-content: flex-start;
+    color: white;
+}
+
+input {
+    width: 50%;
+    padding: 0.5rem;
+    text-align: end;
+    background-color: #F3F9F9;
+    color: #00494D;
+    border: none;
+    font-weight: 700;
+    border-radius: 0.5rem;
+}
+.tips-wrapper input {
+    background-color: #F3F9F9;
+}
+
+.right {
+    padding: 1.5rem;
+    background-color: var(--color__cyan-dark);
+    border-radius: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tip-amount h2 {
+    color: var(--color__cyan-light-gray2);
+    margin: 0;
+    font-size: .9rem;
+}
+
+.tip-amount h3 {
+    color: var(--color__cyan-dark-gray2);
+    margin: 0;
+    font-size: .8rem;
+}
+
+.amount {
+    color: var(--color__cyan-primary);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.reset-button {
+    padding: .3rem 1rem;
+    background-color: hsl(183, 100%, 20%);
+    color: var(--color__cyan-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background-color: var(--color__cyan-primary);
+    color: var(--color__cyan-dark);
 }
