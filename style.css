@@ -45,8 +45,13 @@ body {
 .amount-wrapper {
     position: relative;
 }
+.bill-input {
+    font-family: "Space Mono", monospace;
+    
+}
 
 .amount-wrapper:before {
+    font-family: "Space Mono", monospace;
     content: "$";
     position: absolute;
     left: 6px;

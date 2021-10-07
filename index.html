@@ -63,7 +63,7 @@
             left: 6px;
             top: 1px;
             color: #A2A3A3;
-            font-size: 1.3em;
+            font-size: 1.7rem;
         }
         .people-wrapper {
             position: relative;
@@ -73,7 +73,7 @@
             left: 7px;
             top: 8px;
             color: #A2A3A3;
-            font-size: 0.9em;
+            font-size: 1.7rem;
         }
         .tips-wrapper {
             position: relative;
@@ -128,6 +128,8 @@
             text-align: end;
             background-color: #F4FAFA;
             color: #00494D;
+            font-family: "Space Mono", monospace;
+            font-size: 1.2rem;
             border: none;
             font-weight: 700;
             border-radius: 0.5rem;
@@ -201,34 +203,32 @@
 <body>
     <main class="container">
         <section class="left">
-            <label for="amount" class="input-label">BILL<span
-                id="amount--invalid" class="amount-label--invalid"></span
-              ><br /></label>
+            <label for="bill" class="input-label">BILL</label>
             <div class="amount-wrapper">
-                <input id="amount" class="input-label--invalid" name="amount" type="text" placeholder="0" />
+                <input id="bill" class="bill-input" name="bill" type="number" min="0.00" step="0.01" placeholder="0" /><span class="bill-input--invalid" onkeyup="if(this.value<0){this.value= this.value * -1}" onchange="setTwoNumberDecimal()"></span>
             </div>
             <div class="select-tip">
                 <label for="percent">Select Tip %</label>
                 <div class="tips-wrapper">
-                    <button class="tip-item" id="p05">5%</button>
-                    <button class="tip-item" id="p10">10%</button>
-                    <button class="tip-item" id="p15">15%</button>
+                    <button class="tip-item" id="p05" value="5">5%</button>
+                    <button class="tip-item" id="p10" value="10" onclick="tipPercentSelection()">10%</button>
+                    <button class="tip-item" id="p15" value="15">15%</button>
                 </div>
                 <div class="tips-wrapper">
-                    <button class="tip-item" id="p25">25%</button>
-                    <button class="tip-item" id="p50">50%</button>
-                    <input type="text" id="pCustom" placeholder="Custom" class="tip-item" id="p05" /><span class="tip-item-custom--invalid"></span>
+                    <button class="tip-item" id="p25" value="25">25%</button>
+                    <button class="tip-item" id="p50" value="50">50%</button>
+                    <input type="text" id="pCustom" placeholder="Custom" class="tip-item" id="p05" /><span class="tip-item-input--invalid"></span>
                 </div>
             </div>
-            <label for="nop" class="cal-input-label">Number of people<span
-                id="input__nop--invalid"
+            <label for="nop" class="nop-input-label">Number of people<span
+                id="input-nop"
                 class="input-label--invalid"
               ></span
               ><br
             /></label>
             <div class="people-wrapper">
                 <i class="fas fa-user"></i>
-                <input id="nop" class="cal-input" name="nop" type="text" placeholder="0" />
+                <input id="nop" class="nop-input" name="nop" type="number" min="0" max="100" placeholder="0" onkeyup="if(this.value<0){this.value= this.value * -1}" />
             </div>
         </section>
         <!-- ./left-->
